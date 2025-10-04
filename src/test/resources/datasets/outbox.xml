@@ -1,0 +1,4 @@
+<dataset>
+    <outbox payload="hello world"/>
+    <outbox payload="another event"/>
+</dataset>

@@ -1,0 +1,57 @@
+plugins {
+    id 'java'
+    id 'groovy'
+    id 'org.springframework.boot' version '3.5.6'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.ivo'
+version = '0.0.1-SNAPSHOT'
+description = 'Demo project for Spock tests with Spring integration testing and Testcontainers'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.flywaydb:flyway-core'
+    implementation 'org.flywaydb:flyway-database-postgresql'
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'org.postgresql:postgresql'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-testcontainers'
+    testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation 'org.testcontainers:postgresql'
+
+    testImplementation platform("org.spockframework:spock-bom:2.3-groovy-4.0")
+    testImplementation "org.spockframework:spock-spring"   // Spock + Spring Boot
+    testImplementation "org.apache.groovy:groovy-all:4.0.21"
+
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // DBUnit core
+    testImplementation 'org.dbunit:dbunit:2.7.3'
+
+    // Database Rider (Spring + JUnit 5 support)
+    testImplementation 'com.github.database-rider:rider-spring:1.41.0'
+    testImplementation 'com.github.database-rider:rider-core:1.41.0'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
