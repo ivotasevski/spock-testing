@@ -1,4 +1,4 @@
 <dataset>
-    <outbox payload="hello world"/>
-    <outbox payload="another event"/>
+    <outbox id="1" payload="hello world"/>
+    <outbox id="2" payload="another event"/>
 </dataset>

@@ -8,6 +8,7 @@ import com.ivo.spocktesting.respository.OutboxRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.annotation.Import
+import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.transaction.support.TransactionTemplate
 import spock.lang.Specification
@@ -17,6 +18,7 @@ import spock.lang.Specification
 @Import(TestcontainersConfiguration)
 @SpringBootTest
 @ContextConfiguration
+@ActiveProfiles("test")
 class OutboxRepositorySpec extends Specification {
 
     @Autowired
